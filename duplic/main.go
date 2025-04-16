@@ -33,7 +33,9 @@ func main() {
 	rowMap := make(map[string][]string)
 
 	uniqueRecords := [][]string{headers}
-	duplicates := [][]string{{"lastname", "count"}}
+	// duplicates := [][]string{{"lastname", "count"}}
+	duplicateHeaders := append(headers, "count")
+	duplicates := [][]string{duplicateHeaders}
 
 	for _, row := range dataRows {
 		key := strings.Join(row, "|")
@@ -48,8 +50,12 @@ func main() {
 
 	for key, count := range recordCount {
 		if count > 1 {
-			lastName := rowMap[key][0]
-			duplicates = append(duplicates, []string{lastName, strconv.Itoa(count)})
+			// lastName := rowMap[key][0]
+			// duplicates = append(duplicates, []string{lastName, strconv.Itoa(count)})
+			row := rowMap[key]
+			dupRow := append([]string{}, row...)
+			dupRow = append(dupRow, strconv.Itoa(count))
+			duplicates = append(duplicates, dupRow)
 		}
 	}
 

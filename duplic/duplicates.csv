@@ -1,19 +1,19 @@
-lastname,count
-David,3
-Alice,5
-Nick,4
-Bob,4
-Bob,3
-Charlie,7
-David,7
-Eve,5
-Heidi,6
-Jhon,4
-Alice,9
-Bob,4
-Nick,6
-Grace,10
-David,3
-Charlie,5
-Smith,5
-David,7
+lastName,email,address,city,state,zip,count
+David,david@yahoo.com,16 st,LA,NY,99394,3
+David,david@test.com,13 st,LA,UK,99979,3
+Heidi,heidi@gmail.com,41 st,SF,CA,99544,6
+Nick,nick@yahoo.com,70 st,NY,UK,99100,4
+Grace,grace@outlook.com,84 st,SEA,TX,99330,10
+David,david@yahoo.com,13 st,NY,UK,99503,7
+Charlie,charlie@gmail.com,39 st,NY,NY,99564,5
+Jhon,jhon@outlook.com,57 st,TX,TX,99638,4
+Alice,alice@gmail.com,97 st,LA,CA,99554,5
+Charlie,charlie@outlook.com,38 st,CHI,WA,99505,7
+Bob,bob@test.com,2 st,WH,NY,99991,4
+Smith,smith@yahoo.com,9 st,CHI,TX,99115,5
+David,david@test.com,24 st,SF,NY,99032,7
+Eve,eve@test.com,97 st,SEA,CA,99753,5
+Bob,bob@gmail.com,61 st,SEA,WA,99162,4
+Nick,nick@outlook.com,34 st,WH,CA,99106,6
+Alice,alice@yahoo.com,32 st,LA,NY,99203,9
+Bob,bob@gmail.com,73 st,SEA,CA,99910,3
