@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"strings"
 )
 
 func main() {
@@ -28,39 +27,48 @@ func main() {
 	headers := allRecords[0]
 	dataRows := allRecords[1:]
 
-	recordCount := make(map[string]int)
-	firstSeen := make(map[string]bool)
-	rowMap := make(map[string][]string)
-
+	uniqueMap := make(map[string]bool)
 	uniqueRecords := [][]string{headers}
-	// duplicates := [][]string{{"lastname", "count"}}
-	duplicateHeaders := append(headers, "count")
-	duplicates := [][]string{duplicateHeaders}
+
+	valueCount := make(map[string]int)
 
 	for _, row := range dataRows {
-		key := strings.Join(row, "|")
-		recordCount[key]++
+		rowKey := joinRow(row)
 
-		if !firstSeen[key] {
+		if !uniqueMap[rowKey] {
 			uniqueRecords = append(uniqueRecords, row)
-			firstSeen[key] = true
-			rowMap[key] = row
+			uniqueMap[rowKey] = true
+		}
+
+		for _, val := range row {
+			valueCount[val]++
 		}
 	}
 
-	for key, count := range recordCount {
+	duplicates := [][]string{{"value", "count"}}
+	for val, count := range valueCount {
 		if count > 1 {
-			// lastName := rowMap[key][0]
-			// duplicates = append(duplicates, []string{lastName, strconv.Itoa(count)})
-			row := rowMap[key]
-			dupRow := append([]string{}, row...)
-			dupRow = append(dupRow, strconv.Itoa(count))
-			duplicates = append(duplicates, dupRow)
+			duplicates = append(duplicates, []string{val, strconv.Itoa(count)})
 		}
 	}
 
 	writeCSV("clean.csv", uniqueRecords)
 	writeCSV("duplicates.csv", duplicates)
+}
+
+func joinRow(row []string) string {
+	return "\"" + joinWithDelimiter(row, "|") + "\""
+}
+
+func joinWithDelimiter(row []string, delim string) string {
+	result := ""
+	for i, v := range row {
+		if i > 0 {
+			result += delim
+		}
+		result += v
+	}
+	return result
 }
 
 func writeCSV(filename string, records [][]string) {
